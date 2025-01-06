@@ -2,20 +2,40 @@
   "name": "next_electron_ssr",
   "version": "0.1.0",
   "private": true,
+  "main": "electron.js",
+  
+  "build": {
+    "appId": "com.example.next-electron-app",
+    "productName": "NextElectronApp",
+    "asar": false,
+    "files": [
+      "electron.js",
+      ".next/**",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    }
+  },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && electron-builder",
     "start": "next start",
+    "start-electron": "concurrently \"yarn dev\" \"electron .\"",
     "lint": "next lint"
   },
   "dependencies": {
+    "electron-is-dev": "^3.0.1",
+    "next": "15.1.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.3"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "concurrently": "^9.1.2",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
     "eslint": "^9",
-    "eslint-config-next": "15.1.3",
-    "@eslint/eslintrc": "^3"
+    "eslint-config-next": "15.1.3"
   }
 }
